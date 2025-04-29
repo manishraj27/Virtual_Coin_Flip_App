@@ -6,8 +6,13 @@ import Result from './Result';
 import SoundToggle from './SoundToggle';
 import { useCryptoRandom } from '../hooks/useCryptoRandom';
 import { useAudio } from '../hooks/useAudio';
+import { HelpCircle } from 'lucide-react';
 
-const CoinFlipper = () => {
+interface CoinFlipperProps {
+  onExplainRandomness: () => void;
+}
+
+const CoinFlipper: React.FC<CoinFlipperProps> = ({ onExplainRandomness }) => {
   const [options, setOptions] = useState({
     option1: 'Heads',
     option2: 'Tails'
@@ -94,10 +99,20 @@ const CoinFlipper = () => {
         />
         
         <div className="mt-6 w-full flex items-center justify-between">
-          <SoundToggle 
-            enabled={isSoundEnabled} 
-            onChange={setIsSoundEnabled} 
-          />
+          <div className="flex items-center gap-3">
+            <SoundToggle 
+              enabled={isSoundEnabled} 
+              onChange={setIsSoundEnabled} 
+            />
+            <button
+              onClick={onExplainRandomness}
+              className="text-slate-400 hover:text-white transition-colors flex items-center gap-1"
+              aria-label="Learn about our randomness"
+            >
+              <HelpCircle className="h-5 w-5" />
+              <span className="text-sm">How random is it?</span>
+            </button>
+          </div>
           <FlipButton 
             onClick={handleFlip} 
             disabled={isFlipping} 

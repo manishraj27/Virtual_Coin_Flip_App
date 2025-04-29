@@ -31,3 +31,22 @@ body {
 .animate-pulse-glow {
   animation: pulse-glow 2s infinite;
 }
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pop-in {
+  animation: pop-in 0.3s forwards;
+}
